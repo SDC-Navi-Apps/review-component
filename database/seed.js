@@ -4,10 +4,12 @@ const Review = require('./Review.js');
 const seedData = require('./data.json');
 
 const seedDatabase = function() {
-  Review.create(seedData)
+  return Review.create(seedData)
     .then(() => {
-      return db.disconnect();
+      return db.close();
     });
 };
 
-seedDatabase();
+seedDatabase().then((res)=>{
+  console.log("finished reviews");
+});

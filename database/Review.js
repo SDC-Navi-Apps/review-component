@@ -2,12 +2,13 @@ const mongoose = require('mongoose');
 const db = require('./index.js');
 
 const reviewSchema = new mongoose.Schema({
-  author: String,
+  appId: {type: mongoose.Schema.Types.ObjectId, ref: 'App'},
+  authorId: {type: mongoose.Schema.Types.ObjectId, ref: 'User'},
   body: String,
-  item: Number,
+  likes: Number,
   rating: Number,
-  likes: Number
-});
+  hasReply: Boolean,
+}, { timestamps: true });
 
 const Review = mongoose.model('Review', reviewSchema);
 
