@@ -12,9 +12,9 @@
 ## Table of Contents
 
 1. [Usage](#Usage)
-1. [Requirements](#requirements)
-1. [Development](#development)
-
+2. [Requirements](#requirements)
+3. [Development](#development)
+4. [API Routes](##api)
 ## Usage
 
 > Some usage instructions
@@ -57,3 +57,14 @@ npm run build-dev
 npm run start-dev
 ```
 
+## API
+
+  ### Review
+  - GET /review/:reviewId (Read One)
+  - POST /review/:reviewId (Create)
+  - PUT /review/:reviewId (edit)
+  - DELETE /review/:reviewId (Delete)
+
+  ### Other Routes
+  - GET /reviews/:appId (Read all, used on every page that renders app reviews)
+  - Like: POST likes/:reviewId (Edit that adds a like)

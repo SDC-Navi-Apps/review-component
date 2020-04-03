@@ -5,7 +5,7 @@
 npm
 npm-debug.log
 node_modules/
-database/seeding/*.json
+database/seeding/gen*.json
 pids
 *.pid
 logs

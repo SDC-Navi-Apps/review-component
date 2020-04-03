@@ -7,7 +7,8 @@
     "test": "jest",
     "build-dev": "webpack -d --watch",
     "start-dev": "nodemon server/index.js",
-    "seed_database": "node database/seed.js"
+    "old_seed_database": "node database/seed.js",
+    "seed:db": "concurrently \"mgeneratejs database/seeding/user.json -n 10000 | mongoimport --uri mongodb://localhost:27017/reviews --collection user --mode insert\" \"mgeneratejs database/seeding/review.json -n 10000 | mongoimport --uri mongodb://localhost:27017/reviews --collection reviews --mode insert\" \"mgeneratejs database/seeding/app.json -n 10000 | mongoimport --uri mongodb://localhost:27017/reviews --collection app --mode insert\""
   },
   "repository": {
     "type": "git",
@@ -24,6 +25,7 @@
     "@babel/preset-env": "^7.8.7",
     "@babel/preset-react": "^7.8.3",
     "babel-loader": "^8.0.6",
+    "concurrently": "^5.1.0",
     "cors": "^2.8.5",
     "express": "^4.17.1",
     "jquery": "^3.4.1",
