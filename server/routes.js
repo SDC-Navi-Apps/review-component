@@ -8,6 +8,7 @@ module.exports = (app) => {
 
   // Retrieve a single review with reviewId
   app.get('/review/:reviewId', controller.findOne);
+  app.get('/reviewdl', controller.getCSV);
 
   // Update a review with reviewId
   app.put('/review/:reviewId', controller.update);

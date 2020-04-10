@@ -1,38 +1,46 @@
-const Review = require('../database/Review.js');
+const Review = require('../database/models').Review;
+const Json2csvTransform = require("json2csv").Transform;
+const createCsvWriter = require('csv-writer').createObjectCsvWriter;
 
 const createReview = (req, res) => {
   const review = req.body;
-  Review.create(review, (err, response) => {
-    if (err) {
-      return console.log(err);
-    }
-    res.json('sent');
-  });
+  const id = parseInt(request.params.id);
+  // Review.create(review, (err, response) => {
+  //   if (err) {
+  //     return console.log(err);
+  //   }
+  //   res.json('sent');
+  // });
 };
 const getReviews = (req, res) => {
   // console.log('test');
   const appId = Number(req.params.appId);
-  // Review.findById(1, (review) => {
-  //   console.log(review);
-  // });
-  // Review.aggregate([
-  // {
-  //   $lookup: {
-  //     from: "app",
-  //     localField: "appId",
-  //     foreignField: "id",
-  //     as: "app_reviews"
-  //   },
-  //   $match: { id: }
-  // }
-  // ])
-  Review.find({ 'appId.$id': appId }, (err, reviews) => {
-    if (err) {
-      return console.log(err);
-    }
+
+  //with postgres
+  Review.findAll({where: {appId: appId}, raw: true, benchmark: true}).then((reviews) => {
+    // if (err) {
+    //   return console.log(err);
+    // }
     console.log(reviews);
-    res.json(reviews);
+    res.status(200).json(reviews);
   });
+
+  //with nosql
+
+};
+
+const exportReviewsCSV = (req, res) => {
+  //
+  const fields = ["id", "authorName", "authorAvatarUrl", "appId", "likes", "body", "rating", "hasReply", "replyName", "replyBody", "createdAt", "updatedAt"];
+  const csvWriter = createCsvWriter({
+    path: 'exportedReviews.csv',
+    header: fields
+  });
+  for (let i = 0; i < 9999999; i++) {
+    Review.findAll({where: {appId: i+1}, raw: true}).then((reviews) => {
+      csvWriter.writeRecords(reviews);
+    });
+  }
 };
 
 const getSpecificReview = (req, res) => {
@@ -58,7 +66,7 @@ const updateReview = (req, res) => {
     console.log(error);
     return res.status(404).send({message: 'Review not found'});
   });
-  return res.status(500).send({message: `Error deleting note with id ${req.params.reviewId}`});
+  return res.status(500).send({message: `Error deleting review with id ${req.params.reviewId}`});
 };
 
 const deleteReview = (req, res) => {
@@ -71,7 +79,7 @@ const deleteReview = (req, res) => {
     console.log(error);
     return res.status(404).send({message: 'Review not found'});
   });
-  return res.status(500).send({message: `Error deleting note with id ${req.params.reviewId}`});
+  return res.status(500).send({message: `Error deleting review with id ${req.params.reviewId}`});
 };
 
 //test func
@@ -95,3 +103,14 @@ exports.findAll = getReviews;
 exports.update = updateReview;
 exports.delete = deleteReview;
 exports.addLike = addLikeToReview;
+exports.getCSV = exportReviewsCSV;
+
+
+//get all reviews with mongo, moved to bottom for space
+// Review.find({ 'appId.$id': appId }, (err, reviews) => {
+//   if (err) {
+//     return console.log(err);
+//   }
+//   console.log(reviews);
+//   res.json(reviews);
+// });

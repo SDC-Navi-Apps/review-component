@@ -1,0 +1,8 @@
+{
+  "author_id_fkey": "{{chance.integer({min: 0, max: 9999})}}",
+  "app_id_fkey": "{{chance.integer({min: 0, max: 4999})}}",
+  "body": "$paragraph",
+  "likes": "{{chance.integer({min: 0, max: 99})}}",
+  "rating": "{{chance.integer({min: 1, max: 5})}}",
+  "hasReply": "{{chance.bool({ likelihood: 5 })}}"
+}

@@ -5,14 +5,14 @@ const Stats = function(props) {
   let average = 0;
   for (let i = 0; i < props.reviews.length; i++) {
     average += props.reviews[i].rating;
-    if (ratings[Math.ceil(props.reviews[i].rating / 2)]) {
-      ratings[Math.ceil(props.reviews[i].rating / 2)]++;
+    if (ratings[Math.ceil(props.reviews[i].rating)]) {
+      ratings[Math.ceil(props.reviews[i].rating)]++;
     } else {
-      ratings[Math.ceil(props.reviews[i].rating / 2)] = 1;
+      ratings[Math.ceil(props.reviews[i].rating)] = 1;
     }
   }
   average /= props.reviews.length;
-  average = Math.floor(average * 10) / 10;
+  average = Math.floor(average * 2) / 2;
 
   const sizes = [];
   for (let i = 1; i <= 5; i++) {
@@ -23,17 +23,12 @@ const Stats = function(props) {
   }
 
   const stars = [];
-  if (average % 2) {
-    let numbStars = Math.floor(average / 2);
-    for (let i = 0; i < numbStars; i++) {
-      stars.push(<i key={i} className="icon-star"></i>);
-    }
+  let numbStars = average;
+  for (let i = 0; i < Math.floor(numbStars); i++) {
+    stars.push(<i key={i} className="icon-star"></i>);
+  }
+  if (!Number.isInteger(numbStars)) {
     stars.push(<i key="half-empty" className="icon-star-half-empty"></i>);
-  } else {
-    let numbStars = (average - 1) / 2;
-    for (let i = 0; i < numbStars; i++) {
-      stars.push(<i key={i} className="icon-star"></i>);
-    }
   }
   for (let i = stars.length; i < 5; i++) {
     stars.push(<i key={i} className="icon-star-empty"></i>);
@@ -51,7 +46,7 @@ const Stats = function(props) {
     <div className="row" style={{textAlign: 'center', paddingBottom: '25px'}}>
       <div className="col-sm-1"></div>
       <div className="col-sm-3">
-        <h1 style={{fontWeight: '100', fontSize: '64px'}}>{(average / 2) || 0}</h1>
+        <h1 style={{fontWeight: '100', fontSize: '64px'}}>{(average) || 0}</h1>
         <p style={{padding: '10px 0 5px', fontSize: '20px', letterSpacing: '6px'}}>{stars}</p>
         <p style={{fontWeight: '300', fontSize: '16px', letterSpacing: '1px'}}><i className="icon-user"></i>	&nbsp;{props.reviews.length} total</p>
       </div>

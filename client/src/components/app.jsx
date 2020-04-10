@@ -14,18 +14,16 @@ class Review extends Component {
   }
 
   componentDidMount() {
-    const currentId = this.state.id || Math.floor(Math.random() * 100) + 1;
-    if ($.get) {
-      $.get({
-        url: `http://127.0.0.1:3002/reviews/${currentId}`
-      })
-        .then((reviews) => {
-          this.setState({
-            reviews: reviews,
-            original: reviews
-          });
-        });
-    }
+    const currentId = this.state.id || Math.floor(Math.random() * 1000000) + 1;
+    $.get({
+      url: `/reviews/${currentId}`
+    }, (reviews) => {
+      console.log(reviews);
+      this.setState({
+        reviews: reviews,
+        original: reviews
+      });
+    });
   }
 
   handleSelectChange(e) {

@@ -4,7 +4,7 @@ import ReviewItem from './reviewItem.jsx';
 const ReviewList = function(props) {
 
   const reviews = props.reviews.map((review) => {
-    return <ReviewItem key={review._id} review={review}/>;
+    return <ReviewItem key={review.id} review={review}/>;
   });
 
   if (!reviews.length) {

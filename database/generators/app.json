@@ -1,0 +1,6 @@
+{
+  "name": "{{chance.sentence({ words: 3})}}",
+  "app_author_id_fkey": "{{chance.integer({min: 0, max: 9999})}}",
+  "icon": "{{chance.avatar({protocol: 'https'})}}",
+  "rating": "{{chance.floating({ min: 1, max: 5, fixed: 2 })}}"
+}

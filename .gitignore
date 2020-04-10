@@ -5,7 +5,11 @@
 npm
 npm-debug.log
 node_modules/
-database/seeding/gen*.json
+database/generators/gen*.json
+database/generators/pg*.json
+database/generators/cass*.json
+file.csv
+package-lock.json
 pids
 *.pid
 logs
@@ -19,6 +23,7 @@ coverage
 
 # Grunt intermediate storage (http://gruntjs.com/creating-plugins#storing-task-files)
 .grunt
+.env
 
 # Compiled Dirs (http://nodejs.org/api/addons.html)
 build/

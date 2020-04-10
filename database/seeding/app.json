@@ -1,4 +1,0 @@
-{
-  "name": "{{chance.sentence({ words: 3})}}",
-  "icon": "{{chance.avatar({protocol: 'https'})}}"
-}
