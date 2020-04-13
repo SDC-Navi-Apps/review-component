@@ -16,5 +16,21 @@ module.exports = {
         }
       }
     ]
-  }
+  },
+  node: {
+    "aws-sdk": "empty",
+    "child_process": "empty",
+    "fs": "empty",
+    "module": "empty",
+    "tls": "empty",
+    "net": "empty"
+  },
+  externals: [
+    'aws-sdk',
+    'child_process',
+    'fs',
+    'module',
+    'tls',
+    'net'
+  ]
 };

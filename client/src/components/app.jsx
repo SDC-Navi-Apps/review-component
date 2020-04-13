@@ -9,14 +9,14 @@ class Review extends Component {
     this.state = {
       reviews: [],
       original: [],
-      id: props.id
+      appId: props.appId
     };
   }
 
   componentDidMount() {
-    const currentId = this.state.id || Math.floor(Math.random() * 1000000) + 1;
+    const currentId = this.state.appId || Math.floor(Math.random() * 999999) + 1;
     $.get({
-      url: `/reviews/${currentId}`
+      url: `http://localhost:3002/reviews/${currentId}`
     }, (reviews) => {
       console.log(reviews);
       this.setState({

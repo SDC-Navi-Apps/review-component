@@ -19,11 +19,11 @@ module.exports = {
     "operatorsAliases": false
   },
   "production": {
-    "username": "root",
-    "password": null,
-    "database": "database_production",
-    "host": "127.0.0.1",
-    "dialect": "mysql",
-    "operatorsAliases": false
+    "database": process.env.DBNAME,
+    "username": process.env.DBUSER,
+    "password":  process.env.DBPASS,
+    "host": process.env.DBHOST,
+    "port": process.env.DBPORT,
+    "dialect": "postgres"
   }
 };

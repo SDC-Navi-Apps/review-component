@@ -1,3 +1,4 @@
+require('newrelic');
 const express = require('express');
 const path = require('path');
 const db = require('../database/models/index.js');
@@ -13,6 +14,18 @@ app.use(bodyParser.urlencoded({ extended: false }));
 
 const Routes = require('./routes.js');
 Routes(app);
+
+app.use(function specificErrorHandler(err, req, res, next) {
+  if (err.message === 'this') {
+    res.end();
+  } else {
+    next(err);
+  }
+});
+
+app.use(function catchAllErrorHandler(err, req, res, next) {
+  res.status(500).end();
+});
 
 const server = app.listen(port, () => console.log(`Review component running on port ${port}!`));
 

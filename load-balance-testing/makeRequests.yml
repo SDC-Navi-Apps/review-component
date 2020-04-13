@@ -1,0 +1,90 @@
+config:
+  target: 'http://localhost:3002'
+  # processor: "./helper.js"
+  phases:
+    - duration: 10
+      arrivalRate: 300
+    - duration: 10
+      arrivalRate: 600
+    - duration: 10
+      arrivalRate: 1200
+  variables:
+    staticReviewIds:
+      - "9000000"
+      - "9100000"
+      - "9111111"
+      - "9200000"
+      - "9222222"
+      - "9300000"
+      - "9333333"
+      - "9400000"
+      - "9444444"
+      - "9500000"
+      - "9555555"
+      - "9600000"
+      - "9666666"
+      - "9700000"
+      - "9777777"
+      - "9800000"
+      - "9888888"
+      - "9900000"
+      - "9999999"
+    authorName:
+      - "Sam Hyde"
+      - "John Wilkes Booth"
+      - "Obama"
+      - "Individual X"
+    staticAppIds:
+      - "900000"
+      - "920000"
+      - "940000"
+      - "960000"
+  # http:
+  #   # Responses have to be sent within 5 seconds or the request will be aborted
+  #   timeout: 5
+scenarios:
+  - name: Get Reviews for Random AppId
+    weight: 60
+    flow:
+      # - log: "Get Review list for appid"
+      - get:
+          url: "/"
+  - name: Get Specific Review
+    weight: 10
+    flow:
+      # - log: "Get specific review"
+      # - function: "generateReviewId"
+      - get:
+          url: "/review/{{staticReviewIds}}"
+  - name: Post Review
+    weight: 10
+    flow:
+      # - log: "Add a Review"
+      # - function: "generateReview"
+      - post:
+          url: "/review"
+          json:
+            authorName: "{{authorName}}"
+            authorAvatarUrl: "https://www.gravatar.com/avatar/2222dd27f4d77841b38d0effe64e133c.jpg"
+            appId: "{{staticAppIds}}"
+            likes: "100"
+            body: "Review added from artillery."
+            rating: "5"
+  - name: Update Review
+    weight: 10
+    flow:
+      # - log: "Update Review"
+      # - function: "generateReview"
+      - patch:
+          url: "/review/{{staticReviewIds}}"
+          json:
+            authorName: "{{authorName}}"
+            body: "Review updated from artillery."
+
+  - name: Delete Review
+    weight: 10
+    flow:
+      # - log: "Delete Review"
+      # - function: "generateReviewId"
+      - delete:
+          url: "/review/{{staticReviewIds}}"

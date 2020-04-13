@@ -11,7 +11,7 @@ module.exports = (app) => {
   app.get('/reviewdl', controller.getCSV);
 
   // Update a review with reviewId
-  app.put('/review/:reviewId', controller.update);
+  app.patch('/review/:reviewId', controller.update);
 
   // Delete a review with reviewId
   app.delete('/review/:reviewId', controller.delete);

@@ -1,5 +1,5 @@
 {
-  "name": "front-end-capstone",
+  "name": "sdc-capstone",
   "version": "1.0.0",
   "description": "",
   "main": "index.js",
@@ -25,6 +25,7 @@
     "@babel/preset-env": "^7.8.7",
     "@babel/preset-react": "^7.8.3",
     "@babel/register": "^7.9.0",
+    "@newrelic/native-metrics": "^5.0.0",
     "babel-loader": "^8.0.6",
     "chance": "^1.1.4",
     "concurrently": "^5.1.0",
@@ -36,6 +37,7 @@
     "jquery": "^3.4.1",
     "json2csv": "^5.0.0",
     "mongoose": "^5.9.4",
+    "newrelic": "^6.5.0",
     "pg": "^8.0.0",
     "pg-hstore": "^2.3.3",
     "react": "^16.13.0",

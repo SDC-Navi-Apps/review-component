@@ -23,9 +23,9 @@
     <script type="text/javascript" src="http://127.0.0.1:3002/bundle.js"></script>
     <script>
       let params = new URLSearchParams((new URL(window.location)).search);
-      let id = params.get('id');
+      let appId = params.get('appId');
       ReactDOM.render(
-        React.createElement(Review, {id}),
+        React.createElement(Review, {appId}),
         document.getElementById('review')
       );
     </script>
