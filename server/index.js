@@ -9,6 +9,7 @@ const app = express();
 app.use(cors());
 const port = 3002;
 app.use(express.static(__dirname + '/../client/dist'));
+app.use(cors());
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));
 
