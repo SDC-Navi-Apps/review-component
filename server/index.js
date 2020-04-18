@@ -2,7 +2,7 @@ require('newrelic');
 const express = require('express');
 const path = require('path');
 const db = require('../database/models/index.js');
-const Review = require('../database/models/Review.js');
+//const Review = require('../database/models/review.js');
 const bodyParser = require('body-parser');
 const cors = require('cors');
 const app = express();

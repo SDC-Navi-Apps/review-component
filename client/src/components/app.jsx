@@ -2,6 +2,8 @@ import React, { Component } from 'react';
 import Stats from './stats.jsx';
 import ReviewList from './reviewList.jsx';
 import $ from 'jquery';
+//import dotenv from 'dotenv';
+//dotenv.config();
 
 class Review extends Component {
   constructor(props) {
@@ -16,7 +18,7 @@ class Review extends Component {
   componentDidMount() {
     const currentId = this.state.appId || Math.floor(Math.random() * 999999) + 1;
     $.get({
-      url: `http://localhost:3002/reviews/${currentId}`
+	    url: `/reviews/${currentId}`
     }, (reviews) => {
       console.log(reviews);
       this.setState({

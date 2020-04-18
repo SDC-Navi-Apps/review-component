@@ -24,6 +24,12 @@ module.exports = {
     "password":  process.env.DBPASS,
     "host": process.env.DBHOST,
     "port": process.env.DBPORT,
-    "dialect": "postgres"
+    "dialect": "postgres",
+    "pool": {
+      "max": 20,
+      "min": 0,
+      "acquire": 30000,
+      "idle": 10000
+    }
   }
 };
